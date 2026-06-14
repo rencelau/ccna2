@@ -133,11 +133,11 @@ vlan 10
 vlan 50
    name IPCCTVLAN
 vlan 69
-   name DELETEME
+   name ACCTD
 vlan 70
-    name SELLME
+    name LAURENCE
 vlan 71
-    name HR
+    name HRD
 vlan 100
    name VOICEVLAN
 Int Fa 0/2
@@ -172,10 +172,10 @@ config t
 ip routing
 ip dhcp pool CAMERA6
 host 10.81.50.6 255.255.255.0
-client-identifier 001a.0704.7f5b
+client-identifier 001a.070b.4722
 ip dhcp pool CAMERA8
 host 10.81.50.8 255.255.255.0
-client-identifier 001a.0709.c258 
+client-identifier 001a.070a.bf71 
 end
 show ip dhcp binding
 
