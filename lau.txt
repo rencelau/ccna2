@@ -1,19 +1,19 @@
 @C1
 
 config t
-vlan 3
-name acccamsur.com
+vlan 10
+name comelec.gov.ph
 exit
-Interface vlan 3
- desc acccamsur.com
+Interface vlan 10
+ desc comelec.gov.ph
  no shut
- ip add 10.0.1.1 255.255.255.0
+ ip add 10.0.2.1 255.255.254.0
 exit
-ip dhcp excluded-add 10.0.1.1 10.0.1.20
-ip dhcp pool acccamsur.com
- network 10.0.1.0 255.255.255.0
+ip dhcp excluded-add 10.0.2.1 10.0.2.50
+ip dhcp pool comelec.gov.ph
+ network 10.0.2.0 255.255.254.0
 domain-name acccamsur.com
- default-router 10.0.1.1
+ default-router 10.0.2.1
 dns-server 8.8.8.8
 end
 
@@ -21,7 +21,7 @@ end
 config t
 int e0/0
 switchport mode access
-switchport access vlan 3
+switchport access vlan 10
 
 end
 
@@ -35,30 +35,30 @@ do bp
 
 
 
-@C1 accenturebsp.com
+@C1 army.mil.ph
 
 config t
-vlan 4
-name accenturebsp.com
+vlan 20
+name army.mil.ph
 exit
-Interface vlan 4
- desc accenturebsp.com
+Interface vlan 20
+ desc army.mil.ph
  no shut
- ip add 10.0.0.33 255.255.255.224
+ ip add 10.0.32.1 255.255.224.0
 exit
-ip dhcp excluded-add 10.0.0.33 10.0.0.35
-ip dhcp pool accenturebsp
-network 10.0.0.32 255.255.255.224
-domain-name accenturebsp.com
+ip dhcp excluded-add 10.0.32.1 10.0.32.100
+ip dhcp pool army.mil.ph
+network 10.0.32.0 255.255.224.0
+domain-name army.mil.ph
 dns-server 8.8.8.8
- default-router 10.0.0.33
+ default-router 10.0.32.1
 end
 
 @a2
 config t
 int e1/0
 switchport mode access
-switchport access vlan4
+switchport access vlan 20
 
 end
 
@@ -71,22 +71,22 @@ no shut
 do bp
 
 
-@C1 accenture-sg.com
+@C1 dpwh.gov.ph
 
 config t
-vlan 13
-name accenture-sg.com
+vlan 30
+name dpwh.gov.ph
 exit
-Interface vlan 13
- desc accenture-sg.com
+Interface vlan 30
+ desc dpwh.gov.ph
  no shut
- ip add 10.0.4.1 255.255.252.0
+ ip add 10.0.64.1 255.255.192.0
 exit
-ip dhcp excluded-add 10.0.4.1 10.0.4.100
-ip dhcp pool accenture-sg.com
- network 10.0.4.0 255.255.252.0
-domain-name accenture-sg.com
- default-router 10.0.4.1
+ip dhcp excluded-add 10.0.64.1 10.0.64.100
+ip dhcp pool dpwh.gov.ph
+ network 10.0.64.0 255.255.192.0
+domain-name dpwh.gov.ph
+ default-router 10.0.64.1
 dns-server 8.8.8.8
 end
 
@@ -94,7 +94,7 @@ end
 config t
 int e1/0
 switchport mode access
-switchport access vlan 13
+switchport access vlan 30
 
 end
 
