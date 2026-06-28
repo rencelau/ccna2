@@ -1,0 +1,293 @@
+CCNA day 3
+
+!@r4
+conf t
+int e0/0
+ip add 10.8.100.90 255.255.255.224
+no shut
+end
+
+
+!@I4 - google
+conf t
+int e0/0
+ip add 10.8.100.99 255.255.255.224
+no shut
+end
+
+
+Conf t
+int e0/0
+shut
+end
+
+
+!@r1
+
+conf t
+ip route 10.1.1.4 255.255.255.252 10.1.1.2
+end
+
+conf t
+ip route 10.1.1.8 255.255.255.252 10.1.1.2
+end
+
+
+!@r3
+
+conf t
+ip route 10.1.1.0 255.255.255.252 10.1.1.5
+end
+
+!@r4
+
+conf t
+ip route 10.1.1.0 255.255.255.252 10.1.1.9
+end
+
+!@R2
+
+conf t
+ip route 10.1.1.8 255.255.255.252 10.1.1.6
+end
+
+
+!@a2
+
+conf t
+ ip route 0.0.0.0 0.0.0.0 192.168.1.129 10
+ ip route 0.0.0.0 0.0.0.0 192.168.1.130 1
+ end
+
+
+!@p2
+
+conf t
+ ip route 192.168.1.128 255.255.255.224 10.2.1.2
+end
+
+conf t
+ ip route 192.168.1.129 255.255.255.255 10.2.1.1
+end
+
+
+!@r4
+conf t
+int e3/3
+no shut
+ip add dhcp
+router eigrp 100
+network 208.8.8.0 0.0.0.255
+end
+
+
+@c2
+conf t
+router eigrp 100
+no auto-summary
+network 10.2.1.0 0.0.0.255
+network 10.2.2.0 0.0.0.255
+network 192.168.1.128 0.0.0.31
+network 10.1.4.8 0.0.0.3
+end
+
+
+
+
+
+@r3
+conf t
+ router ospf 1
+  router-id 3.3.3.3
+  network 3.3.3.3 0.0.0.0 area 0
+  network 10.1.1.8 0.0.0.3 area 34
+  network 10.1.1.4 0.0.0.3 area 0
+  end
+
+
+@r4
+conf t
+ router ospf 1
+  router-id 4.4.4.4
+  network 4.4.4.4 0.0.0.0 area 34
+  network 10.1.1.8 0.0.0.3 area 34
+  end
+
+
+@r2
+conf t
+ router ospf 1
+  router-id 2.2.2.2
+  network 2.2.2.2 0.0.0.0 area 0
+  network 10.1.1.0 0.0.0.3 area 12
+  network 10.1.1.4 0.0.0.3 area 0
+  end
+
+
+
+!@R1
+conf t
+ router ospf 1
+  router-id 1.1.1.1
+  exit
+ int lo1
+  ip ospf 1 area 12
+  exit
+ int e1/0
+  ip ospf 1 area 12
+  end
+
+
+
+----------------
+
+conf t
+router eigrp 100
+no auto-summary
+network
+
+conf t
+router ospf 1
+router id _._._
+network _._._. area 
+
+
+
+
+
+!@r2
+router eigrp 100
+no auto-summary
+network 10.46.187.22 0.0.0.0
+network 10.0.15.64 0.0.0.31
+network 192.168.0.152 0.0.0.3
+
+
+
+router ospf 1
+router-id 10.46.187.22
+network 10.46.187.22 0.0.0.0 area 0
+network 10.0.15.64 0.0.0.31 area 0
+network 192.168.0.152 0.0.0.3 area 0
+
+
+
+ip selection method
+1. Longest prefix method
+2. admin distance
+- l/c - 0
+- static - 1
+D EIGRP - 90
+D ex    - 170
+O       -110
+ISIS    -115
+RIPv2   - 120
+
+metric
+eigrp: bandwith and delay
+ospf: bw
+RIP : next hop
+
+
+
+
+!@r1 NAT
+conf t
+int e1/0
+ip nat inside
+int range e1/1-3
+ip nat outside
+end
+
+step 2 1:1
+!R1
+conf t
+ip nat inside source static 10.1.1.10 209.9.9.10
+end
+
+step 3 1:many
+
+
+
+Laboratory
+
+!@R1
+conf t
+ip route 192.168.3.1 255.255.255.255 209.165.200.226
+ip route 209.165.200.230 255.255.255.255 209.165.200.226
+end
+
+
+
+!R3
+conf t
+ip route 192.168.1.1 255.255.255.255 209.165.200.229
+end
+
+
+!R2
+
+conf t
+ip route 192.168.1.1 255.255.255.255 209.165.200.225
+end
+
+ip route 0.0.0.0 0.0.0.0 209.165.202.130
+
+
+
+
+2001:0db8::
+::
+re80::f
+fd00:0:0:3000::
+::1
+ff00::beef:a00a:aa0:0:0
+
+
+fd00:2::/87
+87+6 bits = /93    (6,4,8i)
+fd00:0002:0000:0000:0000:0000:0000:0000
+		     :0000:
+		     :0008:
+		     :0010: = 3rd
+		     :0018:
+		     :0020:
+fd00:2::10:0:1/93
+
+
+
+C: /115+5 = /120
+A: (8,2,1i)
+fd00:0003:0000:0000:0000:0000:0000:0000
+fd00:0003:0000:0000:0000:0000:0000:0100
+fd00:0003:0000:0000:0000:0000:0000:0200
+fd00:0003:0000:0000:0000:0000:0000:0300
+fd00:0003:0000:0000:0000:0000:0000:0400
+fd00:0003:0000:0000:0000:0000:0000:0500
+fd00:0003:0000:0000:0000:0000:0000:0600
+
+fd00:3::100/120
+fd00:3::101/120
+fd00:3::1ff/120
+
+
+
+!r4
+conf t
+ipv6 unicast-routing
+int e0/0
+ipv6 add fd00:3::101/120
+no shut
+end
+
+
+!i4
+conf t
+ipv6 unicast-routing
+int e0/0
+ipv6 add fd00:3::1ff/120
+no shut
+end
+
+
+
